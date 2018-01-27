@@ -21,9 +21,14 @@ class App extends Vaeri {
   }
 
   setListeners() {
-    this.dom.list.items.listen([['click', this.onClickListItem]]);
-    list_item_delete_buttons: [['click', this.onClickListItemDeleteButton]],
-    new_button: [['click', this.onClickNewButton]],
+    return ({
+      list: [null, {
+        items: [[['click', this.onClickListItem]], {
+          button_delete: [[['click', this.onClickListItemDeleteButton]]],
+        }],
+      }],
+      new_button: [[['click', this.onClickNewButton]]],
+    });
   }
 
   onMount() {
