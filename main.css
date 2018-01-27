@@ -1,0 +1,57 @@
+ul.shopping_list {
+  width: 300px;
+  list-style: none;
+  padding: 0;
+}
+
+ul.shopping_list > li {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: #eee;
+  font-family: Helvetica;
+  padding: 7px 10px;
+  margin: 0 0 1px; 0;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 2px;
+}
+ul.shopping_list > li:hover {
+  background-color: #ddd;
+}
+ul.shopping_list > li.in_cart {
+  background-color: #fee;
+}
+ul.shopping_list > li.in_cart:hover {
+  background-color: #edd;
+}
+
+ul.shopping_list > li button.delete {
+  display: none;
+  margin: 0 0 0 auto;
+}
+ul.shopping_list > li:hover button.delete {
+  display: initial;
+  cursor: pointer;
+}
+
+div.new_item input {
+  font-size: 12px;
+  border-radius: 2px;
+  border: 1px solid #222;
+  padding: 7px 10px;
+}
+
+div.new_item button.add {
+  font-size: 12px;
+  border-radius: 2px;
+  border: 1px solid #222;
+  padding: 7px 10px;
+  background-color: #eee;
+  cursor: pointer;
+}
+div.new_item button.add:hover {
+  background-color: #ddd;
+}
