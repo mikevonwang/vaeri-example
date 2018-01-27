@@ -32,25 +32,20 @@ class App extends Vaeri {
   }
 
   onMount() {
-    // xhr() is an imaginary function to retrieve shopping list items from an API.
-    const NSI = {
-      items: [
-        {name: 'Apples', in_cart: false},
-        {name: 'Bacon', in_cart: false},
-        {name: 'Olive oil', in_cart: false},
-      ],
-    };
-    this.doAction('didReceiveData', NSI);
+    const new_items = [
+      {name: 'Apples', in_cart: false},
+      {name: 'Bacon', in_cart: false},
+      {name: 'Olive oil', in_cart: false},
+    ];
+    this.doAction('didReceiveData', {
+      items: new_items,
+    }, [new_items]);
   }
 
-  didReceiveData() {
-    let new_list_items = '';
-    this.state.items.forEach((c,i) => {
-      new_list_items += this.makeListItem(c);
+  didReceiveData(new_items) {
+    this.dom.list.items.populate(new_items, (c,i) => {
+      this.dom.list.items[i].insertAdjacentHTML('afterbegin', c.name);
     });
-    this.dom.list.insertAdjacentHTML('beforeEnd', new_list_items);
-    this.dom.list_items.populate();
-    this.dom.list_item_delete_buttons.populate();
   }
 
   onClickListItem(event, item, index) {
@@ -113,15 +108,6 @@ class App extends Vaeri {
   didClickListItemDeleteButton(index) {
     this.dom.list_items[index].remove();
     this.dom.list_items.delete(index);
-  }
-
-  makeListItem(c) {
-    let html = '';
-    html += '<li>';
-    html += c.name;
-    html += '<button class="delete">-</button>';
-    html += '</li>';
-    return html;
   }
 
 };
