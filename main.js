@@ -3,7 +3,6 @@ class App extends Vaeri {
   constructor() {
     super();
     this.state = {
-      new_list_item_name: '',
       items: [],
     };
   }
@@ -43,9 +42,7 @@ class App extends Vaeri {
   }
 
   didReceiveData(new_items) {
-    this.dom.list.items.populate(new_items, (c,i) => {
-      this.dom.list.items[i].insertAdjacentHTML('afterbegin', c.name);
-    });
+    this.dom.list.items.populate(new_items, this.makeListItem);
   }
 
   onClickListItem(event, item, index) {
@@ -84,10 +81,7 @@ class App extends Vaeri {
 
   didClickNewButton(new_item) {
     this.dom.new_input.value = '';
-    const new_list_item = this.makeListItem(new_item);
-    this.dom.list.insertAdjacentHTML('beforeEnd', new_list_item);
-    this.dom.list_items.populate();
-    this.dom.list_item_delete_buttons.populate();
+    this.dom.list.items.populate(new_item, this.makeListItem);
   }
 
   onClickListItemDeleteButton(event, item, index) {
@@ -108,6 +102,10 @@ class App extends Vaeri {
   didClickListItemDeleteButton(index) {
     this.dom.list_items[index].remove();
     this.dom.list_items.delete(index);
+  }
+
+  makeListItem(c,i) {
+    this.dom.list.items[i].insertAdjacentHTML('afterbegin', c.name);
   }
 
 };
