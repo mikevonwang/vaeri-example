@@ -65,7 +65,7 @@ class App extends Vaeri {
   }
 
   didClickListItem(index) {
-    this.dom.list_items[index].classList.toggle('in_cart');
+    this.dom.list.items[index].classList.toggle('in_cart');
   }
 
   onClickNewButton() {
