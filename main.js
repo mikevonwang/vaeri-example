@@ -85,6 +85,7 @@ class App extends Vaeri {
   }
 
   onClickListItemDeleteButton(event, item, index) {
+    event.stopPropagation();
     const NSI = {
       items: this.state.items.filter((c,i) => {
         if (i === index) {
@@ -96,12 +97,10 @@ class App extends Vaeri {
       }),
     };
     this.doAction('didClickListItemDeleteButton', NSI, [index]);
-    event.stopPropagation();
   }
 
   didClickListItemDeleteButton(index) {
-    this.dom.list_items[index].remove();
-    this.dom.list_items.delete(index);
+    this.dom.list.items.remove(index);
   }
 
   makeListItem(c,i) {
